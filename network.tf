@@ -1,7 +1,7 @@
 resource "google_compute_network" "default" {
   name                    = "default"
   description = "Default network for the project"
-  #auto_create_subnetworks = "false"
+  auto_create_subnetworks = "false"
 }
 
 resource "google_compute_project_default_network_tier" "default" {
