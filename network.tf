@@ -13,25 +13,3 @@ resource "google_compute_address" "invadelabs-ext" {
   description = "static external ip for invadelabs.com"
   network_tier = "STANDARD"
 }
-
-resource "google_compute_firewall" "http-server" {
-  name = "default-allow-http"
-  target_tags = ["http-server"]
-  network = "default"
-
-  allow {
-    protocol = "tcp"
-    ports = ["80"]
-  }
-}
-
-resource "google_compute_firewall" "https-server" {
-  name = "default-allow-https"
-  target_tags = ["https-server"]
-  network = "default"
-
-  allow {
-    protocol = "tcp"
-    ports = ["443"]
-  }
-}
