@@ -1,6 +1,6 @@
 terraform {
   backend "remote" {
-    hostname = "app.terraform.io"
+    hostname     = "app.terraform.io"
     organization = "invadelabs"
 
     workspaces {
@@ -20,7 +20,7 @@ data "terraform_remote_state" "gcp" {
   backend = "remote"
 
   config = {
-    hostname = "app.terraform.io"
+    hostname     = "app.terraform.io"
     organization = "invadelabs"
 
     workspaces = {
