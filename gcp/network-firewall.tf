@@ -1,5 +1,5 @@
-resource "google_compute_firewall" "inv-http-server" {
-  name        = "invadelabs-allow-http"
+resource "google_compute_firewall" "http-server" {
+  name        = "allow-http"
   target_tags = ["http-server"]
   network     = google_compute_network.invadelabs.id
 
@@ -9,8 +9,8 @@ resource "google_compute_firewall" "inv-http-server" {
   }
 }
 
-resource "google_compute_firewall" "inv-https-server" {
-  name        = "invadelabs-allow-https"
+resource "google_compute_firewall" "https-server" {
+  name        = "allow-https"
   target_tags = ["https-server"]
   network     = google_compute_network.invadelabs.id
 
@@ -20,8 +20,8 @@ resource "google_compute_firewall" "inv-https-server" {
   }
 }
 
-resource "google_compute_firewall" "invadelabs-allow-icmp" {
-  name        = "invadelabs-allow-icmp"
+resource "google_compute_firewall" "allow-icmp" {
+  name        = "allow-icmp"
   network     = google_compute_network.invadelabs.id
   source_ranges = ["0.0.0.0/0"]
   priority = 65534
@@ -31,8 +31,8 @@ resource "google_compute_firewall" "invadelabs-allow-icmp" {
   }
 }
 
-resource "google_compute_firewall" "invadelabs-allow-internal" {
-  name        = "invadelabs-allow-internal"
+resource "google_compute_firewall" "allow-internal" {
+  name        = "allow-internal"
   network     = google_compute_network.invadelabs.id
   source_ranges = ["10.138.0.0/24"]
   priority = 65534
