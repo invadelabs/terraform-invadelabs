@@ -28,7 +28,7 @@ resource "google_compute_instance" "invadelabs" {
 
   network_interface {
     # A default network is created for all GCP projects
-    network = google_compute_network.default.id
+    network = google_compute_network.invadelabs.id
     access_config {
       nat_ip = google_compute_address.invadelabs-ext.address # un/comment to associate main IP
     }
