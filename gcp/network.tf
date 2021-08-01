@@ -1,10 +1,10 @@
-resource "google_compute_network" "default" {
-  name                    = "default"
-  description             = "Default network for the project"
+resource "google_compute_network" "invadelabs" {
+  name                    = "invadelabs"
+  description             = "network for invadelabs"
   auto_create_subnetworks = "false"
 }
 
-resource "google_compute_project_default_network_tier" "default" {
+resource "google_compute_project_default_network_tier" "invadelabs" {
   network_tier = "STANDARD"
 }
 
