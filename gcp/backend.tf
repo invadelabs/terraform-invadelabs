@@ -1,10 +1,10 @@
 terraform {
   backend "remote" {
-    hostname = "app.terraform.io"
+    hostname     = "app.terraform.io"
     organization = "invadelabs"
 
     workspaces {
-      name = "terraform-invadelabs"
+      name = "gcp"
     }
   }
 }
