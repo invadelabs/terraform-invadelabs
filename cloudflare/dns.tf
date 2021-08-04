@@ -48,10 +48,11 @@ resource "cloudflare_record" "wiki" {
   name    = "wiki"
   value   = "invadelabs.github.io"
   type    = "CNAME"
-  ttl     = 1 # 1 = automatic
+  ttl     = 120
   proxied = false
 }
 
+###########################################################
 ## sendgrid
 resource "cloudflare_record" "m" {
   zone_id = cloudflare_zone.invadelabs.id
@@ -80,6 +81,7 @@ resource "cloudflare_record" "s2" {
   proxied = false
 }
 
+###########################################################
 ## letsencrypt
 resource "cloudflare_record" "root_caa" {
   zone_id = cloudflare_zone.invadelabs.id
@@ -93,4 +95,76 @@ resource "cloudflare_record" "root_caa" {
     "tag"   = "issuewild"
     "value" = "letsencrypt.org"
   }
+}
+
+###########################################################
+## txt records
+resource "cloudflare_record" "root_txt_keybase" {
+  zone_id = cloudflare_zone.invadelabs.id
+  name    = "invadelabs.com"
+  value   = "keybase-site-verification=wNv2UgzGljNT31s0WJmv3WoELv1meybxL09IC-KZ9Ss"
+  type    = "TXT"
+  ttl     = 120
+  proxied = false
+}
+
+resource "cloudflare_record" "root_txt_github" {
+  zone_id = cloudflare_zone.invadelabs.id
+  name    = "_github-challenge-invadelabs"
+  value   = "4c967f95cc"
+  type    = "TXT"
+  ttl     = 120
+  proxied = false
+}
+
+###########################################################
+## mx records
+resource "cloudflare_record" "root_mx_gmr" {
+  zone_id = cloudflare_zone.invadelabs.id
+  name    = "invadelabs.com"
+  value   = "gmr-smtp-in.l.google.com"
+  type    = "MX"
+  ttl     = 120
+  proxied = false
+  priority = 5
+}
+
+resource "cloudflare_record" "root_mx_alt1" {
+  zone_id = cloudflare_zone.invadelabs.id
+  name    = "invadelabs.com"
+  value   = "alt1.gmr-smtp-in.l.google.com"
+  type    = "MX"
+  ttl     = 120
+  proxied = false
+  priority = 10
+}
+
+resource "cloudflare_record" "root_mx_alt2" {
+  zone_id = cloudflare_zone.invadelabs.id
+  name    = "invadelabs.com"
+  value   = "alt2.gmr-smtp-in.l.google.com"
+  type    = "MX"
+  ttl     = 120
+  proxied = false
+  priority = 20
+}
+
+resource "cloudflare_record" "root_mx_alt3" {
+  zone_id = cloudflare_zone.invadelabs.id
+  name    = "invadelabs.com"
+  value   = "alt3.gmr-smtp-in.l.google.com"
+  type    = "MX"
+  ttl     = 120
+  proxied = false
+  priority = 30
+}
+
+resource "cloudflare_record" "root_mx_alt4" {
+  zone_id = cloudflare_zone.invadelabs.id
+  name    = "invadelabs.com"
+  value   = "alt4.gmr-smtp-in.l.google.com"
+  type    = "MX"
+  ttl     = 120
+  proxied = false
+  priority = 40
 }
