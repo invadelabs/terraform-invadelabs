@@ -11,3 +11,8 @@ output "cloudflare_api_key_secret" {
   value     = data.google_secret_manager_secret_version.cloudflare_api_key.secret_data
   sensitive = true
 }
+
+output "improvmx_api_key" {
+  value     = data.google_secret_manager_secret_version.improvmx_api_key.secret_data
+  sensitive = true
+}
