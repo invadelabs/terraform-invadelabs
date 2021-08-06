@@ -21,3 +21,8 @@ data "google_secret_manager_secret_version" "cloudflare_api_key" {
   provider = google
   secret   = "cloudflare_api_key"
 }
+
+data "google_secret_manager_secret_version" "improvmx_api_key" {
+  provider = google
+  secret   = "improvmx_api_key"
+}
