@@ -3,6 +3,8 @@ resource "google_compute_firewall" "http-server" {
   target_tags = ["http-server"]
   network     = google_compute_network.invadelabs.id
 
+  source_ranges = data.terraform_remote_state.cloudflare.outputs.cloudflare_ip_ranges.ipv4_cidr_blocks
+
   allow {
     protocol = "tcp"
     ports    = ["80"]
@@ -13,6 +15,8 @@ resource "google_compute_firewall" "https-server" {
   name        = "allow-https"
   target_tags = ["https-server"]
   network     = google_compute_network.invadelabs.id
+
+  source_ranges = data.terraform_remote_state.cloudflare.outputs.cloudflare_ip_ranges.ipv4_cidr_blocks
 
   allow {
     protocol = "tcp"
