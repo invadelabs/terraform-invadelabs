@@ -131,22 +131,22 @@ resource "cloudflare_record" "root_mx_spf_improvmx" {
 ###########################################################
 ## mx records
 resource "cloudflare_record" "root_mx_mx1_improvmx" {
-  zone_id = cloudflare_zone.invadelabs.id
-  name    = "."
-  value   = "mx1.improvmx.com"
-  type    = "MX"
-  ttl     = 120
-  proxied = false
+  zone_id  = cloudflare_zone.invadelabs.id
+  name     = "."
+  value    = "mx1.improvmx.com"
+  type     = "MX"
+  ttl      = 120
+  proxied  = false
   priority = 10
 }
 
 resource "cloudflare_record" "root_mx_mx2_improvmx" {
-  zone_id = cloudflare_zone.invadelabs.id
-  name    = "."
-  value   = "mx2.improvmx.com"
-  type    = "MX"
-  ttl     = 120
-  proxied = false
+  zone_id  = cloudflare_zone.invadelabs.id
+  name     = "."
+  value    = "mx2.improvmx.com"
+  type     = "MX"
+  ttl      = 120
+  proxied  = false
   priority = 20
 }
 ## google domains mx records to use with custom name servers
