@@ -44,7 +44,7 @@ resource "cloudflare_firewall_rule" "block_bad_bots" {
 resource "cloudflare_filter" "us_only_cgm_ha" {
   zone_id     = cloudflare_zone.invadelabs.id
   description = "US only access to cgm and ha"
-  expression  = "(http.host eq \"cgm.invadelabs.com\" and not ip.geoip.country in {\"US\"}) or (http.host eq \"ha.invadelabs.com\" and not ip.geoip.country in {\"US\"})"
+  expression  = "(http.host eq \"cgm.invadelabs.com\" and ip.geoip.country ne \"US\") or (http.host eq \"ha.invadelabs.com\" and ip.geoip.country ne \"US\")"
 }
 
 resource "cloudflare_firewall_rule" "us_only_cgm_ha" {
