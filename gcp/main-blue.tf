@@ -4,8 +4,8 @@ resource "google_compute_instance" "invadelabs" {
   machine_type = "e2-micro"
   zone         = "us-west1-a"
   hostname     = "invadelabs.com"
-  labels       = { "key2" : "value2" }
-  metadata     = { "key1" : "value1" }
+  #labels       = { "key2" : "value2" }
+  #metadata     = { "key1" : "value1" }
   tags = ["http-server",
     "https-server",
     "allow-drew-nm1",
@@ -17,7 +17,7 @@ resource "google_compute_instance" "invadelabs" {
     device_name = "invadelabs-disk-0"
     initialize_params {
       image  = "ubuntu-2004-focal-v20210720"
-      labels = { "key3" : "value3" }
+      #labels = { "key3" : "value3" }
       type   = "pd-standard" # or pd-balanced or pd-ssd
       size   = "10"
     }
