@@ -7,7 +7,9 @@ resource "google_compute_instance" "invadelabs" {
   labels       = { "key2" : "value2" }
   metadata     = { "key1" : "value1" }
   tags = ["http-server",
-  "https-server", ]
+    "https-server",
+    "allow-drew-nm1",
+  ]
   metadata_startup_script = "sudo apt-get update && sudo apt-get install -y ansible rclone etckeeper && cd /etc && etckeeper init"
   deletion_protection     = true
 

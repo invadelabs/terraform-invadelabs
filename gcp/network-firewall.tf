@@ -24,16 +24,16 @@ resource "google_compute_firewall" "https-server" {
   }
 }
 
-resource "google_compute_firewall" "allow-icmp" {
-  name          = "allow-icmp"
-  network       = google_compute_network.invadelabs.id
-  source_ranges = ["0.0.0.0/0"]
-  priority      = 65534
-
-  allow {
-    protocol = "icmp"
-  }
-}
+#resource "google_compute_firewall" "allow-icmp" {
+#  name          = "allow-icmp"
+#  network       = google_compute_network.invadelabs.id
+#  source_ranges = ["0.0.0.0/0"]
+#  priority      = 65534
+#
+#  allow {
+#    protocol = "icmp"
+#  }
+#}
 
 resource "google_compute_firewall" "allow-internal" {
   name          = "allow-internal"
@@ -52,5 +52,21 @@ resource "google_compute_firewall" "allow-internal" {
   allow {
     protocol = "udp"
     ports    = ["0-65535"]
+  }
+}
+
+resource "google_compute_firewall" "allow-drew-nm1" {
+  name    = "allow-drew-nm1"
+  network = google_compute_network.invadelabs.id
+
+  source_ranges = [data.external.myipaddr.result.ip, ]
+
+  allow {
+    protocol = "tcp"
+    ports    = ["22", "5666", "80", "443"]
+  }
+
+  allow {
+    protocol = "icmp"
   }
 }
