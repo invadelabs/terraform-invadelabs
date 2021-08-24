@@ -59,7 +59,7 @@ resource "google_compute_firewall" "allow-drew-nm1" {
   name    = "allow-drew-nm1"
   network = google_compute_network.invadelabs.id
 
-  source_ranges = [data.external.myipaddr.result.ip, ]
+  source_ranges = ["${data.external.myipaddr.result.ip}/32", ]
 
   allow {
     protocol = "tcp"
