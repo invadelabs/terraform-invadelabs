@@ -38,7 +38,7 @@ resource "google_compute_firewall" "https-server" {
 resource "google_compute_firewall" "allow-internal" {
   name          = "allow-internal"
   network       = google_compute_network.invadelabs.id
-  source_ranges = ["10.138.0.0/24"]
+  source_ranges = ["${google_compute_subnetwork.invadelabs-us-west1.ip_cidr_range}", ]
   priority      = 65534
 
   allow {
