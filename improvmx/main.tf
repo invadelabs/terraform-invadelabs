@@ -5,5 +5,5 @@ resource "improvmx_domain" "invadelabs" {
 resource "improvmx_email_forward" "invadelabs_wilcard" {
   domain            = improvmx_domain.invadelabs.id
   alias_name        = "*"
-  destination_email = "drewderivative@invadelabs.com"
+  destination_email = "drewderivative@gmail.com"
 }

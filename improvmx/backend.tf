@@ -11,7 +11,7 @@ terraform {
   required_providers {
     improvmx = {
       source  = "issyl0/improvmx"
-      version = "0.1.0"
+      version = "0.4.2"
     }
   }
 }
