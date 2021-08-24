@@ -16,10 +16,10 @@ resource "google_compute_instance" "invadelabs" {
   boot_disk {
     device_name = "invadelabs-disk-0"
     initialize_params {
-      image  = "ubuntu-2004-focal-v20210720"
+      image = "ubuntu-2004-focal-v20210720"
       #labels = { "key3" : "value3" }
-      type   = "pd-standard" # or pd-balanced or pd-ssd
-      size   = "10"
+      type = "pd-standard" # or pd-balanced or pd-ssd
+      size = "10"
     }
   }
 
