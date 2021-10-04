@@ -130,72 +130,73 @@ resource "cloudflare_record" "root_mx_spf_improvmx" {
 
 ###########################################################
 ## mx records
-resource "cloudflare_record" "root_mx_mx1_improvmx" {
-  zone_id  = cloudflare_zone.invadelabs.id
-  name     = "."
-  value    = "mx1.improvmx.com"
-  type     = "MX"
-  ttl      = 120
-  proxied  = false
-  priority = 10
-}
-
-resource "cloudflare_record" "root_mx_mx2_improvmx" {
-  zone_id  = cloudflare_zone.invadelabs.id
-  name     = "."
-  value    = "mx2.improvmx.com"
-  type     = "MX"
-  ttl      = 120
-  proxied  = false
-  priority = 20
-}
-## google domains mx records to use with custom name servers
-#resource "cloudflare_record" "root_mx_gmr" {
-#  zone_id = cloudflare_zone.invadelabs.id
-#  name    = "invadelabs.com"
-#  value   = "gmr-smtp-in.l.google.com"
-#  type    = "MX"
-#  ttl     = 120
-#  proxied = false
-#  priority = 5
-#}
-#
-#resource "cloudflare_record" "root_mx_alt1" {
-#  zone_id = cloudflare_zone.invadelabs.id
-#  name    = "invadelabs.com"
-#  value   = "alt1.gmr-smtp-in.l.google.com"
-#  type    = "MX"
-#  ttl     = 120
-#  proxied = false
+#resource "cloudflare_record" "root_mx_mx1_improvmx" {
+#  zone_id  = cloudflare_zone.invadelabs.id
+#  name     = "."
+#  value    = "mx1.improvmx.com"
+#  type     = "MX"
+#  ttl      = 120
+#  proxied  = false
 #  priority = 10
 #}
 #
-#resource "cloudflare_record" "root_mx_alt2" {
-#  zone_id = cloudflare_zone.invadelabs.id
-#  name    = "invadelabs.com"
-#  value   = "alt2.gmr-smtp-in.l.google.com"
-#  type    = "MX"
-#  ttl     = 120
-#  proxied = false
+#resource "cloudflare_record" "root_mx_mx2_improvmx" {
+#  zone_id  = cloudflare_zone.invadelabs.id
+#  name     = "."
+#  value    = "mx2.improvmx.com"
+#  type     = "MX"
+#  ttl      = 120
+#  proxied  = false
 #  priority = 20
 #}
-#
-#resource "cloudflare_record" "root_mx_alt3" {
-#  zone_id = cloudflare_zone.invadelabs.id
-#  name    = "invadelabs.com"
-#  value   = "alt3.gmr-smtp-in.l.google.com"
-#  type    = "MX"
-#  ttl     = 120
-#  proxied = false
-#  priority = 30
-#}
-#
-#resource "cloudflare_record" "root_mx_alt4" {
-#  zone_id = cloudflare_zone.invadelabs.id
-#  name    = "invadelabs.com"
-#  value   = "alt4.gmr-smtp-in.l.google.com"
-#  type    = "MX"
-#  ttl     = 120
-#  proxied = false
-#  priority = 40
-#}
+
+## google domains mx records to use with custom name servers
+resource "cloudflare_record" "root_mx_gmr" {
+  zone_id = cloudflare_zone.invadelabs.id
+  name    = "invadelabs.com"
+  value   = "gmr-smtp-in.l.google.com"
+  type    = "MX"
+  ttl     = 120
+  proxied = false
+  priority = 5
+}
+
+resource "cloudflare_record" "root_mx_alt1" {
+  zone_id = cloudflare_zone.invadelabs.id
+  name    = "invadelabs.com"
+  value   = "alt1.gmr-smtp-in.l.google.com"
+  type    = "MX"
+  ttl     = 120
+  proxied = false
+  priority = 10
+}
+
+resource "cloudflare_record" "root_mx_alt2" {
+  zone_id = cloudflare_zone.invadelabs.id
+  name    = "invadelabs.com"
+  value   = "alt2.gmr-smtp-in.l.google.com"
+  type    = "MX"
+  ttl     = 120
+  proxied = false
+  priority = 20
+}
+
+resource "cloudflare_record" "root_mx_alt3" {
+  zone_id = cloudflare_zone.invadelabs.id
+  name    = "invadelabs.com"
+  value   = "alt3.gmr-smtp-in.l.google.com"
+  type    = "MX"
+  ttl     = 120
+  proxied = false
+  priority = 30
+}
+
+resource "cloudflare_record" "root_mx_alt4" {
+  zone_id = cloudflare_zone.invadelabs.id
+  name    = "invadelabs.com"
+  value   = "alt4.gmr-smtp-in.l.google.com"
+  type    = "MX"
+  ttl     = 120
+  proxied = false
+  priority = 40
+}
