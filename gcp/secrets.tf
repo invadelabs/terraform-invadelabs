@@ -23,16 +23,3 @@ data "google_secret_manager_secret_version" "cloudflare_api_key" {
   provider = google
   secret   = "cloudflare_api_key"
 }
-
-## improvmx_api_key
-resource "google_secret_manager_secret" "improvmx_api_key" {
-  secret_id = "improvmx_api_key"
-  replication {
-    automatic = true
-  }
-}
-
-data "google_secret_manager_secret_version" "improvmx_api_key" {
-  provider = google
-  secret   = "improvmx_api_key"
-}

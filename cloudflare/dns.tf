@@ -122,7 +122,8 @@ resource "cloudflare_record" "root_txt_github" {
 resource "cloudflare_record" "root_mx_spf_improvmx" {
   zone_id = cloudflare_zone.invadelabs.id
   name    = "."
-  value   = "v=spf1 include:spf.improvmx.com ~all"
+  # value   = "v=spf1 include:spf.improvmx.com ~all"
+  value   = "v=spf1 include:_spf.google.com ~all"
   type    = "TXT"
   ttl     = 120
   proxied = false
@@ -152,51 +153,51 @@ resource "cloudflare_record" "root_mx_spf_improvmx" {
 
 ## google domains mx records to use with custom name servers
 resource "cloudflare_record" "root_mx_gmr" {
-  zone_id = cloudflare_zone.invadelabs.id
-  name    = "invadelabs.com"
-  value   = "gmr-smtp-in.l.google.com"
-  type    = "MX"
-  ttl     = 120
-  proxied = false
+  zone_id  = cloudflare_zone.invadelabs.id
+  name     = "invadelabs.com"
+  value    = "gmr-smtp-in.l.google.com"
+  type     = "MX"
+  ttl      = 120
+  proxied  = false
   priority = 5
 }
 
 resource "cloudflare_record" "root_mx_alt1" {
-  zone_id = cloudflare_zone.invadelabs.id
-  name    = "invadelabs.com"
-  value   = "alt1.gmr-smtp-in.l.google.com"
-  type    = "MX"
-  ttl     = 120
-  proxied = false
+  zone_id  = cloudflare_zone.invadelabs.id
+  name     = "invadelabs.com"
+  value    = "alt1.gmr-smtp-in.l.google.com"
+  type     = "MX"
+  ttl      = 120
+  proxied  = false
   priority = 10
 }
 
 resource "cloudflare_record" "root_mx_alt2" {
-  zone_id = cloudflare_zone.invadelabs.id
-  name    = "invadelabs.com"
-  value   = "alt2.gmr-smtp-in.l.google.com"
-  type    = "MX"
-  ttl     = 120
-  proxied = false
+  zone_id  = cloudflare_zone.invadelabs.id
+  name     = "invadelabs.com"
+  value    = "alt2.gmr-smtp-in.l.google.com"
+  type     = "MX"
+  ttl      = 120
+  proxied  = false
   priority = 20
 }
 
 resource "cloudflare_record" "root_mx_alt3" {
-  zone_id = cloudflare_zone.invadelabs.id
-  name    = "invadelabs.com"
-  value   = "alt3.gmr-smtp-in.l.google.com"
-  type    = "MX"
-  ttl     = 120
-  proxied = false
+  zone_id  = cloudflare_zone.invadelabs.id
+  name     = "invadelabs.com"
+  value    = "alt3.gmr-smtp-in.l.google.com"
+  type     = "MX"
+  ttl      = 120
+  proxied  = false
   priority = 30
 }
 
 resource "cloudflare_record" "root_mx_alt4" {
-  zone_id = cloudflare_zone.invadelabs.id
-  name    = "invadelabs.com"
-  value   = "alt4.gmr-smtp-in.l.google.com"
-  type    = "MX"
-  ttl     = 120
-  proxied = false
+  zone_id  = cloudflare_zone.invadelabs.id
+  name     = "invadelabs.com"
+  value    = "alt4.gmr-smtp-in.l.google.com"
+  type     = "MX"
+  ttl      = 120
+  proxied  = false
   priority = 40
 }
