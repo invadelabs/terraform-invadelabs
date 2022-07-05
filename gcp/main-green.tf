@@ -12,7 +12,7 @@ resource "google_compute_instance" "invadelabs_green" {
   ]
   # runs each boot, not first boot only
   #metadata_startup_script = "sudo apt-get update && sudo apt-get install -y ansible rclone etckeeper && cd /etc && etckeeper init"
-  deletion_protection     = true
+  deletion_protection = true
 
   boot_disk {
     device_name = "invadelabs-green-disk-0"
