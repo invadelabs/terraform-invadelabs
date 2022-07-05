@@ -63,7 +63,7 @@ resource "google_compute_firewall" "allow-drew-nm1" {
 
   allow {
     protocol = "tcp"
-    ports    = ["22", "5666", "80", "443"]
+    ports    = ["22", "80", "443", "5666", "9100"]
   }
 
   allow {

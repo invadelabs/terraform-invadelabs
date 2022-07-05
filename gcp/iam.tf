@@ -4,7 +4,7 @@ resource "google_service_account" "secret_reader" {
 }
 
 resource "google_project_iam_member" "secretmanager_secretaccessor" {
-  #project = google_project.invadelabs.name
-  role   = "roles/secretmanager.secretAccessor"
-  member = "serviceAccount:${google_service_account.secret_reader.email}"
+  project = "invadelabs"
+  role    = "roles/secretmanager.secretAccessor"
+  member  = "serviceAccount:${google_service_account.secret_reader.email}"
 }
