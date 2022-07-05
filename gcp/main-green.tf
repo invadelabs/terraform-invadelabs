@@ -10,7 +10,8 @@ resource "google_compute_instance" "invadelabs_green" {
     "https-server",
     "allow-drew-nm1",
   ]
-  metadata_startup_script = "sudo apt-get update && sudo apt-get install -y ansible rclone etckeeper && cd /etc && etckeeper init"
+  # runs each boot, not first boot only
+  #metadata_startup_script = "sudo apt-get update && sudo apt-get install -y ansible rclone etckeeper && cd /etc && etckeeper init"
   deletion_protection     = true
 
   boot_disk {
@@ -29,10 +30,10 @@ resource "google_compute_instance" "invadelabs_green" {
   }
 
   network_interface {
-    # A default network is created for all GCP projects
-    network = google_compute_network.invadelabs.id
-    #access_config {
-    #  nat_ip = google_compute_address.invadelabs-ext.address # un/comment to associate main IP
-    #}
+    subnetwork = "invadelabs"
+    # do not uncomment access_config {} block to get ephemeral IP
+    access_config {
+      nat_ip = google_compute_address.invadelabs-ext.address # un/comment to associate main IP
+    }
   }
 }
