@@ -3,6 +3,12 @@ terraform {
     hostname     = "app.terraform.io"
     organization = "invadelabs"
 
+    required_providers {
+      google = {
+        version = "~> 5.30.0"
+      }
+    }
+
     workspaces {
       name = "gcp"
     }
@@ -23,5 +29,5 @@ data "terraform_remote_state" "cloudflare" {
 }
 
 data "external" "myipaddr" {
-  program = ["bash", "-c", "curl -s 'https://api.ipify.org?format=json'"]
+  program = ["bash", "-c", "curl 'https://api.ipify.org?format=json'"]
 }
