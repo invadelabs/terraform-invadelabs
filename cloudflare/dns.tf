@@ -1,35 +1,45 @@
-resource "cloudflare_record" "root" {
-  zone_id = cloudflare_zone.invadelabs.id
-  name    = "."
-  value   = data.terraform_remote_state.gcp.outputs.invadelabs-ext-ip
-  type    = "A"
-  ttl     = 1 # 1 = automatic
-  proxied = true
-}
+# moved to cdn XXX add record
+# resource "cloudflare_record" "root" {
+#   zone_id = cloudflare_zone.invadelabs.id
+#   name    = "."
+#   value   = data.terraform_remote_state.gcp.outputs.invadelabs-ext-ip
+#   type    = "A"
+#   ttl     = 1 # 1 = automatic
+#   proxied = true
+# }
 
 resource "cloudflare_record" "cgm" {
   zone_id = cloudflare_zone.invadelabs.id
   name    = "cgm"
-  value   = "invadelabs.com"
-  type    = "CNAME"
-  ttl     = 1 # 1 = automatic
-  proxied = true
+  value   = data.terraform_remote_state.gcp.outputs.invadelabs-ext-ip
+  type    = "A"
+  ttl     = 120
+  proxied = false
 }
 
 resource "cloudflare_record" "drew" {
   zone_id = cloudflare_zone.invadelabs.id
   name    = "drew"
-  value   = "invadelabs.com"
+  value   = "srv.invadelabs.com"
   type    = "CNAME"
   ttl     = 1 # 1 = automatic
   proxied = true
 }
 
+resource "cloudflare_record" "plex" {
+  zone_id = cloudflare_zone.invadelabs.id
+  name    = "plex"
+  value   = "192.168.1.125"
+  type    = "A"
+  ttl     = 120
+  proxied = false
+}
+
 resource "cloudflare_record" "srv" {
   zone_id = cloudflare_zone.invadelabs.id
   name    = "srv"
-  value   = "invadelabs.com"
-  type    = "CNAME"
+  value   = data.terraform_remote_state.gcp.outputs.invadelabs-ext-ip
+  type    = "A"
   ttl     = 120
   proxied = false
 }
@@ -37,7 +47,7 @@ resource "cloudflare_record" "srv" {
 resource "cloudflare_record" "www" {
   zone_id = cloudflare_zone.invadelabs.id
   name    = "www"
-  value   = "invadelabs.com"
+  value   = "drew-h.pages.dev"
   type    = "CNAME"
   ttl     = 1 # 1 = automatic
   proxied = true
@@ -90,10 +100,10 @@ resource "cloudflare_record" "root_caa" {
   ttl     = 120
   proxied = false
 
-  data = {
-    "flags" = "0"
-    "tag"   = "issuewild"
-    "value" = "letsencrypt.org"
+  data {
+    flags = "0"
+    tag   = "issuewild"
+    value = "letsencrypt.org"
   }
 }
 
@@ -117,87 +127,6 @@ resource "cloudflare_record" "root_txt_github" {
   proxied = false
 }
 
-###########################################################
-## spf records
-resource "cloudflare_record" "root_mx_spf_improvmx" {
-  zone_id = cloudflare_zone.invadelabs.id
-  name    = "."
-  # value   = "v=spf1 include:spf.improvmx.com ~all"
-  value   = "v=spf1 include:_spf.google.com ~all"
-  type    = "TXT"
-  ttl     = 120
-  proxied = false
-}
 
 ###########################################################
-## mx records
-#resource "cloudflare_record" "root_mx_mx1_improvmx" {
-#  zone_id  = cloudflare_zone.invadelabs.id
-#  name     = "."
-#  value    = "mx1.improvmx.com"
-#  type     = "MX"
-#  ttl      = 120
-#  proxied  = false
-#  priority = 10
-#}
-#
-#resource "cloudflare_record" "root_mx_mx2_improvmx" {
-#  zone_id  = cloudflare_zone.invadelabs.id
-#  name     = "."
-#  value    = "mx2.improvmx.com"
-#  type     = "MX"
-#  ttl      = 120
-#  proxied  = false
-#  priority = 20
-#}
-
-## google domains mx records to use with custom name servers
-resource "cloudflare_record" "root_mx_gmr" {
-  zone_id  = cloudflare_zone.invadelabs.id
-  name     = "invadelabs.com"
-  value    = "gmr-smtp-in.l.google.com"
-  type     = "MX"
-  ttl      = 120
-  proxied  = false
-  priority = 5
-}
-
-resource "cloudflare_record" "root_mx_alt1" {
-  zone_id  = cloudflare_zone.invadelabs.id
-  name     = "invadelabs.com"
-  value    = "alt1.gmr-smtp-in.l.google.com"
-  type     = "MX"
-  ttl      = 120
-  proxied  = false
-  priority = 10
-}
-
-resource "cloudflare_record" "root_mx_alt2" {
-  zone_id  = cloudflare_zone.invadelabs.id
-  name     = "invadelabs.com"
-  value    = "alt2.gmr-smtp-in.l.google.com"
-  type     = "MX"
-  ttl      = 120
-  proxied  = false
-  priority = 20
-}
-
-resource "cloudflare_record" "root_mx_alt3" {
-  zone_id  = cloudflare_zone.invadelabs.id
-  name     = "invadelabs.com"
-  value    = "alt3.gmr-smtp-in.l.google.com"
-  type     = "MX"
-  ttl      = 120
-  proxied  = false
-  priority = 30
-}
-
-resource "cloudflare_record" "root_mx_alt4" {
-  zone_id  = cloudflare_zone.invadelabs.id
-  name     = "invadelabs.com"
-  value    = "alt4.gmr-smtp-in.l.google.com"
-  type     = "MX"
-  ttl      = 120
-  proxied  = false
-  priority = 40
-}
+# XXX update mx records for cloudflare

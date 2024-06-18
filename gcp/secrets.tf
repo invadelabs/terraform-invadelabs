@@ -2,7 +2,7 @@
 resource "google_secret_manager_secret" "cloudflare" {
   secret_id = "cloudflare"
   replication {
-    automatic = true
+    auto {}
   }
 }
 
