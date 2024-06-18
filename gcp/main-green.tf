@@ -20,7 +20,7 @@
 #      image = "ubuntu-2204-lts"
 #      #labels = { "key3" : "value3" }
 #      type = "pd-standard" # or pd-balanced or pd-ssd
-#      size = "10"
+#      size = "30"
 #    }
 #  }
 #
