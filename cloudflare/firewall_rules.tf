@@ -1,7 +1,7 @@
 ## home_assistant_allow_amazon
 resource "cloudflare_filter" "home_assistant_allow_amazon" {
   zone_id     = cloudflare_zone.invadelabs.id
-  description = "Home Assistant - Allow Amazon"
+  description = "Home Assistant - Allow Amazon / T-Mobile"
   expression  = "(ip.geoip.asnum eq 16509) or (ip.geoip.asnum eq 21928)"
 }
 
