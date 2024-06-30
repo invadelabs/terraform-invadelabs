@@ -11,10 +11,10 @@
 resource "cloudflare_record" "cgm" {
   zone_id = cloudflare_zone.invadelabs.id
   name    = "cgm"
-  value   = data.terraform_remote_state.gcp.outputs.invadelabs-ext-ip
-  type    = "A"
-  ttl     = 120
-  proxied = false
+  value   = "${cloudflare_record.srv.name}.invadelabs.com"
+  type    = "CNAME"
+  ttl     = 1
+  proxied = true
 }
 
 resource "cloudflare_record" "drew" {
@@ -24,6 +24,24 @@ resource "cloudflare_record" "drew" {
   type    = "CNAME"
   ttl     = 1 # 1 = automatic
   proxied = true
+}
+
+resource "cloudflare_record" "mc" {
+  zone_id = cloudflare_zone.invadelabs.id
+  name    = "mc"
+  value   = "${cloudflare_record.nm.name}.invadelabs.com"
+  type    = "CNAME"
+  ttl     = 120
+  proxied = false
+}
+
+resource "cloudflare_record" "nm" {
+  zone_id = cloudflare_zone.invadelabs.id
+  name    = "nm"
+  value   = data.terraform_remote_state.gcp.outputs.my_public_ip
+  type    = "A"
+  ttl     = 1
+  proxied = false
 }
 
 resource "cloudflare_record" "plex" {
@@ -44,15 +62,6 @@ resource "cloudflare_record" "srv" {
   proxied = false
 }
 
-resource "cloudflare_record" "www" {
-  zone_id = cloudflare_zone.invadelabs.id
-  name    = "www"
-  value   = "drew-h.pages.dev"
-  type    = "CNAME"
-  ttl     = 1 # 1 = automatic
-  proxied = true
-}
-
 resource "cloudflare_record" "wiki" {
   zone_id = cloudflare_zone.invadelabs.id
   name    = "wiki"
@@ -60,6 +69,15 @@ resource "cloudflare_record" "wiki" {
   type    = "CNAME"
   ttl     = 120
   proxied = false
+}
+
+resource "cloudflare_record" "www" {
+  zone_id = cloudflare_zone.invadelabs.id
+  name    = "www"
+  value   = "drew-h.pages.dev"
+  type    = "CNAME"
+  ttl     = 1 # 1 = automatic
+  proxied = true
 }
 
 ###########################################################
@@ -126,7 +144,6 @@ resource "cloudflare_record" "root_txt_github" {
   ttl     = 120
   proxied = false
 }
-
 
 ###########################################################
 # XXX update mx records for cloudflare
